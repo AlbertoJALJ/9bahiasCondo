@@ -1,0 +1,151 @@
+<div class="card col-lg-12 col-md-12 col-xl-12 col-sm-12 mx-auto shadow-lg p-3 mb-5 bg-white rounded d-none d-sm-none d-md-block">
+    <h5 class="text-center card-header"> Listado de huespedes</h5>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Condominio</th>
+                    <th scope="col">Fecha de ingreso</th>
+                    <th>Telefono</th>
+                    <th>Acciones</th>
+                    <th></th>
+                </tr>
+                </thead>
+            <tbody>
+                {{#each huespedes}}
+                <tr>
+                    <th scope="row">{{inc @index}}</th>
+                    <td>{{nombres}} {{apellido_paterno}} {{apellido_materno}}</td>
+                    <td>{{condominio.numero}} {{condominio.edificio}}</td>
+                    <td>{{format_date2 fecha_ingreso}} </td>
+                    <td>{{telefono}}</td>
+                    <td>
+                        <a data-toggle="tooltip" data-placement="top" title="Crear usuario" href="users/assignUser/{{id}}"  style="background-color: transparent" type="button" class="btn "><i
+                            class="material-icons">person_add</i></a>
+                        <a data-toggle="tooltip" data-placement="top" title="Registrar gastos mensuales" href="/huesped/gastos/{{id}}"  style="background-color: transparent" type="button" class="btn text-success"><i
+                                class="material-icons">monetization_on</i></a>
+                        <a data-toggle="tooltip" data-placement="top" title="Ver información" href="/huesped/profile/{{id}}" style="background-color: transparent" type="button" class="btn text-info"><i
+                                class="material-icons">account_box</i></a>
+                        <a data-toggle="tooltip" data-placement="top" title="Eliminar información" href="/huesped/delete/{{id}}" style="background-color: transparent" type="button" class="btn text-danger"><i
+                                class="material-icons">delete</i></a>
+                        {{#unless cuenta.renta}}
+                            <a data-toggle="tooltip" data-placement="top" title=" Añadir cuenta " href="/huesped/cuenta/{{id}}" style="background-color: transparent" type="button" class="btn text-dark"><i
+                                    class="material-icons">account_balance</i></a>
+                        {{/unless}}
+                    </td>
+                </tr>
+                </tbody>
+                {{/each}}
+            </table>
+        </div>
+    </div>
+</div>
+<div class="card  d-block d-sm-block d-md-none">
+    <h5 class="text-center card-header text-white" style="background-color: #1b1e21">Lista de huespedes</h5>
+    <div class="accordion" id="accordionExample">
+        {{#each huespedes}}
+
+            <div class="card">
+                <div class="card-header" id="heading{{inc @index}}">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block text-dark text-center collapsed " type="button"
+                                data-toggle="collapse" data-target="#collapse{{inc @index}}" aria-expanded="true"
+                                aria-controls="collapse{{inc @index}}">
+                            <p class="card-title"> {{nombres}} {{apellido_paterno}} {{apellido_materno}}</p>
+                        </button>
+                    </h2>
+                </div>
+
+                <div id="collapse{{inc @index}}" class="collapse {{collapse_status @index}}"
+                     aria-labelledby="heading{{inc @index}}"
+                     data-parent="#accordionExample">
+                    <div class="card-body col-md-10 mx-auto">
+                        <form>
+                            <div class="row">
+                                <div class="form-group col-12 col-lg-4 col-md-4 col-xl-4 col-sm-12">
+                                    <label for="exampleInputEmail1">Teléfono</label>
+                                    <input value="{{telefono}}" readonly type="text" class="form-control"
+                                           id="exampleInputEmail1"
+                                           aria-describedby="input{{inc @index}}">
+                                    <small id="input{{inc @index}}" class="form-text text-muted">Descripción de ejemplo
+                                    </small>
+                                </div>
+                                <div class="form-group col-12 col-lg-4 col-md-4 col-xl-4 col-sm-12">
+                                    <label for="exampleInputEmail1">Fecha de ingreso</label>
+                                    <input value="{{format_date2 fecha_ingreso}}" readonly type="text"
+                                           class="form-control"
+                                           id="exampleInputEmail1"
+                                           aria-describedby="input{{inc @index}}">
+                                    <small id="input{{inc @index}}" class="form-text text-muted">Descripción de ejemplo
+                                    </small>
+                                </div>
+                                <div class="form-group col-12 col-lg-4 col-md-4 col-xl-4 col-sm-12">
+                                    <label for="exampleInputEmail1">Nacionalidad</label>
+                                    <input value="{{nacionalidad}}" readonly type="text" class="form-control"
+                                           id="exampleInputEmail1"
+                                           aria-describedby="input{{inc @index}}">
+                                    <small id="input{{inc @index}}" class="form-text text-muted">Descripción de ejemplo
+                                    </small>
+                                </div>
+                                <div class="form-group col-12 col-lg-4 col-md-4 col-xl-4 col-sm-12">
+                                    <label for="exampleInputEmail1">Condominio</label>
+                                    <input value="{{condominio.numero}} {{condominio.edificio}}"
+                                           readonly type="text" class="form-control" id="exampleInputEmail1"
+                                           aria-describedby="input{{inc @index}}">
+                                    <small id="input{{inc @index}}" class="form-text text-muted">Información del condominio
+                                    </small>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row text-center">
+                            {{#unless cuenta.renta}}
+                                <div class="col">
+                                    <a href="users/assignUser/{{id}}" style="background-color: transparent" type="button" class="btn text-dark"><i
+                                            class="material-icons">account_balance</i></a>
+                                    <small id="input{{inc @index}}" class="form-text text-muted">
+                                        Crear usuario
+                                    </small>
+                                </div>
+                            {{/unless}}
+                            {{#unless username}}
+                                <div class="col">
+                                    <a href="/huesped/miperfil/{{id}}"  style="background-color: transparent" type="button" class="btn "><i
+                                            class="material-icons">person_add</i></a>
+                                    <small id="input{{inc @index}}" class="form-text text-muted">
+                                        Gastos mensuales
+                                    </small>
+                                </div>
+                            {{/unless}}
+                            <div class="col">
+                                <a href="/huesped/gastos/{{id}}"  style="background-color: transparent" type="button" class="btn text-success"><i
+                                        class="material-icons">monetization_on</i></a>
+                                <small id="input{{inc @index}}" class="form-text text-muted">
+                                    Gastos mensuales
+                                </small>
+                            </div>
+                            <div class="col">
+                                <a href="/huesped/edit/{{id}}" style="background-color: transparent" type="button" class="btn text-info"><i
+                                        class="material-icons">create</i></a>
+                                <small id="input{{inc @index}}" class="form-text text-muted">
+                                    Editar
+                                </small>
+                            </div>
+                            <div class="col">
+                                <a href="/huesped/delete/{{id}}" style="background-color: transparent" type="button" class="btn text-danger"><i
+                                        class="material-icons">delete</i></a>
+                                <small id="input{{inc @index}}" class="form-text text-muted">
+                                    Eliminar huesped
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>

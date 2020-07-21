@@ -1,0 +1,43 @@
+<div class="card col-12 col-lg-12 col-md-12 col-xl-10 col-sm-12 mx-auto shadow-lg p-3 mb-5 bg-white rounded ">
+    <h5 class="text-center card-header">Crear reporte de incidencia</h5>
+    <div class="card-body">
+        <p class="card-title">Por favor, rellena los campos siguientes:</p>
+        <form method="post" action="/condominio/incidencia/create/{{huesped.id}}/{{huesped.condominio}}">
+            <div class="row">
+                <div class="form-group col-sm-12 col-md-4 col-xl-4 col-lg-4">
+                    <label for="tipo_mantenimineto">Tipo de incidencia</label>
+                    <select onchange="getTipoIncidencia()" name="tipo_mantenimineto" class="form-control" id="tipo_mantenimineto">
+                        <option disabled selected>Selecciona un tipo</option>
+                        <option value="Aire acondicionado"> Aire acondicionado </option>
+                        <option value="Instalacion hidraulica"> Instalación hidraulica </option>
+                        <option value="Instalacion electrica"> Instalación eléctrica </option>
+                        <option value="Equipos electronicos"> Equipos electrónicos </option>
+                        <option value="otro"> Otro (Especifica en comentarios) </option>
+
+                    </select>
+                </div>
+                <div class="form-group col-sm-12 col-md-4 col-xl-4 col-lg-4">
+                    <label for="mantenimiento">Problema</label>
+                    <select name="mantenimiento" class="form-control" id="mantenimiento">
+                        <option disabled selected>Selecciona un mantenimiento</option>
+                    </select>
+                </div>
+                <div class="form-group col-sm-12 col-md-4 col-xl-4 col-lg-4">
+                    <label for="area_mantenimiento">En dónde está tu problema?</label>
+                    <select name="area_mantenimiento" class="form-control" id="area_mantenimiento">
+                        <option disabled selected>Selecciona un area</option>
+                        {{>areas}}
+                    </select>
+                </div>
+                <div class="form-group col">
+                    <label for="comentarios_mantenimiento">Comentarios</label>
+                    <input type="text" class="form-control" id="comentarios_mantenimiento"
+                           name="comentarios_mantenimiento">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary float-right">Enviar</button>
+        </form>
+    </div>
+</div>
+
+

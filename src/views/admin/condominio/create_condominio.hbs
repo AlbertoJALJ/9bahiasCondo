@@ -1,0 +1,30 @@
+<div class="card col-lg-8 col-md-8 col-xl-8 col-sm-12 mx-auto shadow-lg p-3 mb-5 bg-white rounded ">
+    <h5 class="text-center card-header">Nuevo Condominio</h5>
+    <div class="card-body">
+        <p class="card-title">Por favor, rellena los campos siguientes:</p>
+        <form method="post" action="/condominio/create/">
+            <div class="row ">
+                <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                    <label for="edificio_condominio">Edificio</label>
+                    <select required name="edificio" class="form-control" id="edificio_condominio">
+                        <option disabled selected>Selecciona edificio</option>
+                        {{>edificios}}
+                    </select>
+                </div>
+                <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                    <label for="numero_edificio">Número</label>
+                    <input required type="number" class="form-control" name="numero" id="numero_edificio">
+                </div>
+            </div>
+            <div class="form-group col-6 mx-auto">
+                <label for="numero_cuartos">Número de cuartos</label>
+                <input type="number" class="form-control" name="numero_cuartos" id="numero_cuartos">
+            </div>
+            <div class="text-center align-items-center">
+                <button type="submit" class="btn btn-primary mx-auto">Registrar condominio</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+

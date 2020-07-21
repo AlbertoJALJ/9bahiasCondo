@@ -1,0 +1,136 @@
+<div class="col-md-8 mr-auto ml-auto">
+    <div class="card" id="informacion">
+        <h5 class="card-header ">My info</h5>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Entry Date</label>
+                        <input disabled value="{{huesped.fecha_ingreso}}" name="text" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Phone Number</label>
+                        <input value="{{huesped.telefono}}" name="Telefono" type="number"
+                               class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Country</label>
+                        <input value="{{huesped.nacionalidad}}"
+                               name="Direccion_completa" type="text"
+                               class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Username </label>
+                        <input disabled value="{{huesped.username}}" name="username"
+                               type="text"
+                               class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Monthly Rent</label>
+                        <input value="{{huesped.cuenta.renta}}" name="renta"
+                               type="text"
+                               class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Deposit</label>
+                        <input readonly value="{{huesped.cuenta.deposito}}" name="deposito"
+                               type="text"
+                               class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><br>
+<div class="row">
+    <div class="col-md-6 mr-auto ml-auto">
+        <div class="card">
+            <div class="card-header">
+                Monthly Expenses
+            </div>
+            <div class="card-body">
+                {{#if huesped.gastos_mensuales}}
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="">
+
+                        <th>
+                            Date
+                        </th>
+                        <th>
+                            electricity
+                        </th>
+                        <th>
+                            Air conditioning
+                        </th>
+                        <th>
+                            Water
+                        </th>
+                        <th>
+                            Others
+                        </th>
+                        </thead>
+                        <tbody>
+                        {{#each huesped.gastos_mensuales}}
+                            <tr>
+                                <td>{{fecha}}</td>
+                                <td>{{electricidad}}</td>
+                                <td>{{aire_acondicionado}}</td>
+                                <td>{{agua}}</td>
+                                <td>{{mantenimientos_extras}}</td>
+                            </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
+                {{else}}
+                    <h4 class="text-center">Not Expenses Registered Yet</h4>
+                {{/if}}
+            </div>
+            </div>
+        </div>
+    </div>
+</div> <br>
+<div class="row">
+    <div class="col-md-6 mr-auto ml-auto">
+        <div class="card">
+            <div class="card-header">
+                My Reports
+                <a href="/condominio/incidencia/en/create/{{huesped.id}}/{{huesped.condominio.id}}" class="btn btn-dark float-right text-white">New Report</a>
+            </div>
+            <div class="card-body table-responsive">
+                <table class="table ">
+                    <thead>
+                    <tr class="text-center">
+                        <th scope="col">Date</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Maintenance</th>
+                        <th scope="col">Area</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each huesped.condominio.reportes}}
+                        <tr>
+                            <td class="text-center">{{fecha}}</td>
+                            <td class="text-center">{{mantenimiento.tipo_en}}</td>
+                            <td class="text-center">{{mantenimiento.nombre_en}}</td>
+                            <td class="text-center">{{mantenimiento.area}}</td>
+                        </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

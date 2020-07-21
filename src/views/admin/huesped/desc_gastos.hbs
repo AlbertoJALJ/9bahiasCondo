@@ -1,0 +1,30 @@
+<div class="card col-lg-8 col-md-8 col-xl-8 col-sm-12 mx-auto shadow-lg p-3 mb-5 bg-white rounded ">
+    <h5 class="text-center card-header">Gasto mensual ({{gasto.fecha}})</h5>
+    <div class="card-body">
+        <form >
+            <div>
+                <div class="form-group col">
+                    <label for="nombres_huesped"> Electricidad</label>
+                    <input readonly type="text" class="form-control" value="{{gasto.electricidad}}" name="electricidad" id="renta">
+                </div>
+                <div class="form-group col">
+                    <label for="apellido_paterno"> Aire acondicionado </label>
+                    <input readonly type="text" class="form-control" value="{{gasto.aire_acondicionado}}" id="aire_acondicionado" name="aire_acondicionado">
+                </div>
+                <div class="form-group col">
+                    <label for="apellido_paterno"> Agua </label>
+                    <input readonly type="text" class="form-control" value="{{gasto.agua}}" id="agua" name="agua">
+                </div>
+                <div class="form-group col">
+                    <label for="apellido_materno">Mantenimientos extras</label>
+                    <input readonly type="text" class="form-control" value="{{gasto.mantenimientos_extras}}" id="mantenimientos_extras" name="mantenimientos_extras">
+                </div>
+                <div class="form-group">
+                    <label for="mantenimientos_extras_desc">Descripción de mantenimientos extras</label>
+                    <textarea readonly  class="form-control" id="mantenimientos_extras_desc" rows="3">{{gasto.mantenimientos_extras_desc}}</textarea>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

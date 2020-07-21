@@ -1,0 +1,31 @@
+<div class="card col-lg-8 col-md-8 col-xl-8 col-sm-12 mx-auto shadow-lg p-3 mb-5 bg-white rounded ">
+    <h5 class="text-center card-header">Registro de gastos mensuales</h5>
+    <div class="card-body">
+        <p class="card-title text-center">Por favor, rellena los campos siguientes:</p>
+        <form method="post" action="/huesped/gastos/{{huesped.id}}">
+            <div>
+                <div class="form-group col">
+                    <label for="nombres_huesped"> Electricidad</label>
+                    <input type="text" class="form-control" name="electricidad" id="renta">
+                </div>
+                <div class="form-group col">
+                    <label for="apellido_paterno"> Aire acondicionado </label>
+                    <input type="text" class="form-control" id="aire_acondicionado" name="aire_acondicionado">
+                </div>
+                <div class="form-group col">
+                    <label for="apellido_paterno"> Agua </label>
+                    <input type="text" class="form-control" id="agua" name="agua">
+                </div>
+                <div class="form-group col">
+                    <label for="apellido_materno">Mantenimientos extras</label>
+                    <input type="text" class="form-control" id="mantenimientos_extras" name="mantenimientos_extras">
+                </div>
+                <div class="form-group col">
+                    <label for="apellido_materno">Descripción de mantenimientos extras</label>
+                    <input type="text" class="form-control" id="descripcion" name="mantenimientos_extras_desc">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary float-right">Enviar</button>
+        </form>
+    </div>
+</div>

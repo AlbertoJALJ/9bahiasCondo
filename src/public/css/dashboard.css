@@ -22,6 +22,12 @@ body {
     height: 16px;
     vertical-align: text-bottom;
 }
+.iimg{
+    background-color: rgba(0,0,0,0.8);
+    background-image:url(http://www.gelfuzion.com/img/slides/nivo/bg-1.jpg);
+    max-width: 100%;
+    filter:brightness(0.6);
+}
 
 /*
  * Sidebar

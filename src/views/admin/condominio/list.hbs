@@ -1,0 +1,79 @@
+<div class="card col-lg-12 col-md-12 col-xl-12 col-sm-12 mx-auto shadow-lg p-3 mb-5 bg-white rounded d-none d-sm-none d-md-block">
+    <h5 class="text-center card-header"> Listado de condominios</h5>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Ocupante actual</th>
+                    <th>Acciones</th>
+                    <th></th>
+                </tr>
+                </thead>
+            <tbody>
+                {{#each condominios}}
+                <tr>
+                    <th scope="row">{{inc @index}}</th>
+                    <td>{{numero}} {{edificio}}</td>
+                    <td>{{status}}</td>
+                    <td> {{huesped_actual.nombres}} {{huesped_actual.apellido_paterno}} {{huesped_actual.apellido_materno}} </td>
+                    <td>
+                        <a data-toggle="tooltip" data-placement="top" title="Eliminar condominio" href="/condominio/delete/{{id}}" style="background-color: transparent" type="button" class="btn text-danger"><i
+                                class="material-icons">delete</i></a>
+                        {{#unless huesped_actual.nombres}}
+                            <a data-toggle="tooltip" data-placement="top" title=" Condominio desocupado" disabled="" style="background-color: transparent" type="button" class="btn text-dark"><i
+                                    class="material-icons">person_add_disabled</i></a>
+                        {{else}}
+                            <a data-toggle="tooltip" data-placement="top" title=" Ver Huesped " href="/huesped/profile/{{huesped_actual.id}}" style="background-color: transparent" type="button" class="btn text-dark"><i
+                                    class="material-icons">person_pin</i></a>
+                            <a data-toggle="tooltip" data-placement="top" title=" Liberar condominio " href="/condominio/free/{{id}}" style="background-color: transparent" type="button" class="btn text-dark"><i
+                                    class="material-icons">person_remove</i></a>
+                        {{/unless}}
+                    </td>
+                </tr>
+                </tbody>
+                {{/each}}
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<div class="table-responsive d-block d-sm-block d-md-none">
+    <h3 class="text-center">Condominios</h3>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Status</th>
+            <th scope="col">Ocupante actual</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+    <tbody>
+        {{#each condominios}}
+        <tr>
+            <td>{{numero}} {{edificio}}</td>
+            <td>{{status}}</td>
+            <td class="text-center"> {{huesped_actual.nombres}} {{huesped_actual.apellido_paterno}} {{huesped_actual.apellido_materno}} </td>
+            <td>
+                <a data-toggle="tooltip" data-placement="top" title=" Historial de huespedes " href="/condominio/huespeds/{{id}}" style="background-color: transparent" type="button" class="btn text-dark"><i
+                        class="material-icons">history</i></a>
+                {{#unless huesped_actual.nombres}}
+                    <a data-toggle="tooltip" data-placement="top" title=" Condominio desocupado" disabled="" style="background-color: transparent" type="button" class="btn text-dark"><i
+                            class="material-icons">person_add_disabled</i></a>
+                {{else}}
+                    <a data-toggle="tooltip" data-placement="top" title=" Ver Huesped " href="/huesped/profile/{{huesped_actual.id}}" style="background-color: transparent" type="button" class="btn text-dark"><i
+                            class="material-icons">person_pin</i></a>
+                    <a data-toggle="tooltip" data-placement="top" title=" Liberar condominio " href="/condominio/free/{{id}}" style="background-color: transparent" type="button" class="btn text-dark"><i
+                            class="material-icons">person_remove</i></a>
+                {{/unless}}
+            </td>
+        </tr>
+        </tbody>
+        {{/each}}
+    </table>
+</div>

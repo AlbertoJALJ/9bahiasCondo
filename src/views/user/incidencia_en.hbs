@@ -1,0 +1,50 @@
+{{>header_en}}
+
+<main role="main">
+    <div class="col-md-12">
+        <div class="card  col-lg-8 col-md-8 col-xl-8 col-sm-12 mx-auto shadow-lg p-3 mb-5 mt-5 bg-white rounded ">
+            <h5 class="text-center card-header">Maintenance Report</h5>
+            <div class="card-body">
+                <p class="card-title">Please fill in the following fields:</p>
+                <form method="post" action="/condominio/incidencia/en/create/{{huesped.id}}/{{huesped.condominio}}">
+                    <div class="row">
+                        <div class="form-group col-sm-12 col-md-4 col-xl-4 col-lg-4">
+                            <label for="tipo_mantenimineto">Type of Maintenance</label>
+                            <select onchange="getTipoIncidenciaEn()" name="tipo_mantenimiento" class="form-control"
+                                    id="tipo_mantenimiento_en">
+                                <option disabled selected>Select one Type</option>
+                                <option value="Air conditioning"> Air conditioning</option>
+                                <option value="Pipes and Hydraulic Installation"> Pipes and Hydraulic Installation</option>
+                                <option value="Electricity"> Electricity </option>
+                                <option value="Electronic Devices"> Electronic Devices</option>
+                                <option value="Other"> Other (please specify in the comment field)</option>
+
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-12 col-md-4 col-xl-4 col-lg-4">
+                            <label for="mantenimiento">Maintenance</label>
+                            <select name="mantenimiento" class="form-control" id="mantenimiento_en">
+                                <option disabled selected>Select a Maintenance</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-12 col-md-4 col-xl-4 col-lg-4">
+                            <label for="area_mantenimiento">Where is your problem?</label>
+                            <select name="area_mantenimiento" class="form-control" id="area_mantenimiento">
+                                <option disabled selected>Select the Area</option>
+                                {{>areas_en}}
+                            </select>
+                        </div>
+                        <div class="form-group col">
+                            <label for="comentarios_mantenimiento">Comments</label>
+                            <input type="text" class="form-control" id="comentarios_mantenimiento"
+                                   name="comentarios_mantenimiento">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary float-right">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+{{>footer_en}}

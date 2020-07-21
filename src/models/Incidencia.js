@@ -10,10 +10,15 @@ const IncidenciaSchema = new mongoose.Schema({
     ref: 'Condominio'
   },
   fecha: String,
+  hora: String,
   comentario: String,
   mantenimiento:{
+    tipo: String,
+    tipo_en: String,
     nombre: String,
-    area: String
+    nombre_en: String,
+    area: String,
+    area_en: String
   },
   status: {
     type: String,
