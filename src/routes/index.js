@@ -44,9 +44,8 @@ router.get('/getCondos/:edificio', getCondo)
 router.get('/getTipoIncidencia/', getTipoIncidencia)
 router.get('/getTipoIncidencia/en', getTipoIncidenciaEn)
 
-router.get('/',async function(req, res, next) {
-  const text = await translate('Hola mundo', 'en');
-  res.render('index', { text });
+router.get('/',isAdmin, async function(req, res) {
+  res.render('index');
 })
 router.get('/huesped/create/', isAdmin, render_create_huesped)
 router.post('/huesped/edit/:id', isAdmin, update_huesped)

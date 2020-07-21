@@ -5,7 +5,6 @@ import {Incidencia} from '../models/Incidencia'
 import {Mantenimiento} from '../models/Mantenimiento'
 import {isAdmin, isUser} from '../libs/auth'
 import translate from 'translate'
-import webpush from '../webpush'
 import moment from 'moment'
 let now = moment()
 moment.locale('es')
