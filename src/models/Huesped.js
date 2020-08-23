@@ -12,6 +12,8 @@ const HuespedSchema = new mongoose.Schema({
   fecha_ingreso: String,
   fecha_salida: String,
   username: String,
+  mail: String,
+  password: String,
   telefono: String,
   nacionalidad: String,
   expeclinico : Boolean,

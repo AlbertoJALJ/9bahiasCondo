@@ -1,85 +1,99 @@
 <div class="row">
     {{#if mensaje}}
-        <div class="col-8 mt-3 mx-auto">
-            <div class="alert alert-success alert-dismissible text-center fade show" role="alert">
-                {{mensaje}}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+    <div class="col-8 mt-3 mx-auto">
+        <div class="alert alert-success alert-dismissible text-center fade show" role="alert">
+            {{mensaje}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
+    </div>
     {{/if}}
     <div class="col-md-8 align-items-center">
         <div class="card shadow-lg p-3 mb-5 bg-white rounded ">
-            <h5 class="text-center card-header">{{huesped.nombres}} {{huesped.apellido_paterno}} {{huesped.apellido_materno}}</h5>
+            <h5 class="text-center card-header">{{huesped.nombres}} {{huesped.apellido_paterno}}
+                {{huesped.apellido_materno}}</h5>
             <div class="card-body">
                 <form method="post" action="/huesped/edit/{{huesped.id}}">
                     <div class="row">
                         <div class="form-group col-sm-12 col-md-4 col-xl-4 col-lg-4">
                             <label for="nombres_huesped">Nombres</label>
                             <input value="{{huesped.nombres}}" readonly type="text" class="form-control text-capitalize"
-                                   name="nombres" id="nombres_huesped">
+                                name="nombres" id="nombres_huesped">
                         </div>
                         <div class="form-group col-sm-12 col-md-4 col-xl-4 col-lg-4">
                             <label for="apellido_paterno">Apellido paterno</label>
                             <input value="{{huesped.apellido_paterno}}" readonly type="text"
-                                   class="form-control text-capitalize" id="apellido_paterno" name="apellido_paterno">
+                                class="form-control text-capitalize" id="apellido_paterno" name="apellido_paterno">
                         </div>
                         <div class="form-group col-sm-12 col-md-4 col-xl-4 col-lg-4">
                             <label for="apellido_materno">Apellido materno</label>
                             <input value="{{huesped.apellido_materno}}" readonly type="text"
-                                   class="form-control text-capitalize" id="apellido_materno" name="apellido_materno">
+                                class="form-control text-capitalize" id="apellido_materno" name="apellido_materno">
                         </div>
                         <div class="form-group col-sm-12 col-md-4 col-xl-4 col-lg-4">
                             <label for="telefono">Número de teléfono</label>
                             <input value="{{huesped.telefono}}" readonly type="tel" class="form-control" id="telefono"
-                                   name="telefono">
+                                name="telefono">
                         </div>
                         <div class="form-group col-sm-12 col-md-4 col-xl-4 col-lg-4">
                             <label for="fecha_ingreso">Fecha de ingreso</label>
-                            <input readonly value="{{huesped.fecha_ingreso}}"  type="date" class="form-control"
-                                   id="fecha_ingreso">
+                            <input readonly value="{{huesped.fecha_ingreso}}" type="date" class="form-control"
+                                id="fecha_ingreso">
                         </div>
                         <div class="form-group col-sm-12 col-md-4 col-xl-4 col-lg-4">
                             <label for="nacionalidad">Nacionalidad</label>
                             <input readonly value="{{huesped.nacionalidad}}" type="text" class="form-control"
-                                   id="nacionalidad" name="nacionalidad">
+                                id="nacionalidad" name="nacionalidad">
                         </div>
                         <div class="form-group col-sm-12 col-md-6 col-xl-6 col-lg-6">
                             <label for="deposito_cuenta">Deposito</label>
                             <input readonly value="$ {{huesped.cuenta.deposito}}" type="text" class="form-control"
-                                   id="deposito_cuenta" >
+                                id="deposito_cuenta">
                         </div>
                         <div class="form-group col-sm-12 col-md-6 col-xl-6 col-lg-6">
                             <label for="renta_cuenta">Renta</label>
                             <input readonly value="$ {{huesped.cuenta.renta}}" type="text" class="form-control"
-                                   id="renta_cuenta">
+                                id="renta_cuenta">
                         </div>
+
+                        <div class="form-group col-sm-12 col-md-6 col-xl-6 col-lg-6">
+                            <label for="email">Correo registrado</label>
+                            <input readonly value="{{huesped.mail}}" type="email" class="form-control"
+                                id="email" placeholder="Si aparece vacío, cree el usuario">
+                        </div>
+                        <div class="form-group col-sm-12 col-md-6 col-xl-6 col-lg-6">
+                            <label for="password">Contraseña de acceso</label>
+                            <input readonly value="{{huesped.password}}" type="text" class="form-control"
+                                id="password" placeholder="Si aparece vacío, cree el usuario">
+                        </div>
+
                         <div class="form-group col-sm-12 col-md-12 col-xl-12 col-lg-12">
                             <label for="comentarios_cuenta">Comentarios</label>
                             <input readonly value="{{huesped.cuenta.comentarios}}" type="text" class="form-control"
-                                   id="comentarios_cuenta">
+                                id="comentarios_cuenta">
                         </div>
                         {{#if huesped.expeclinico}}
-                            <div class="form-group form-check mx-auto d-flex">
-                    <span class="material-icons text-success">
-                        done
-                    </span>
-                                <label class="form-check-label text-capitalize " for="expediente_clinico"> expediente
-                                    clínico </label>
-                            </div>
+                        <div class="form-group form-check mx-auto d-flex">
+                            <span class="material-icons text-success">
+                                done
+                            </span>
+                            <label class="form-check-label text-capitalize " for="expediente_clinico"> expediente
+                                clínico </label>
+                        </div>
                         {{else}}
-                            <div class="form-group form-check mx-auto d-flex">
-                    <span class="material-icons text-danger">
-                        close
-                    </span>
-                                <label class="form-check-label text-capitalize " for="expediente_clinico"> expediente
-                                    clínico </label>
-                            </div>
+                        <div class="form-group form-check mx-auto d-flex">
+                            <span class="material-icons text-danger">
+                                close
+                            </span>
+                            <label class="form-check-label text-capitalize " for="expediente_clinico"> expediente
+                                clínico </label>
+                        </div>
                         {{/if}}
                     </div>
                     <div class="col text-center mx-auto" id="button_update">
-                        <button id="actualizar" type="button" class="btn btn-outline-danger btn-sm">Actualizar información </button>
+                        <button id="actualizar" type="button" class="btn btn-outline-danger btn-sm">Actualizar
+                            información </button>
                     </div>
                     <hr>
                     <p class="card-title">Información del condominio</p>
@@ -87,12 +101,12 @@
                         <div class="form-group col-sm-12 col-md-6 col-xl-6 col-lg-6">
                             <label for="edificio_condominio">Edificio</label>
                             <input value="{{huesped.condominio.edificio}}" readonly type="text" class="form-control"
-                                   id="edificio_condominio" name="edificio_condominio">
+                                id="edificio_condominio" name="edificio_condominio">
                         </div>
                         <div class="form-group col-sm-12 col-md-6 col-xl-6 col-lg-6">
                             <label for="numero_condominio">Número</label>
                             <input value="{{huesped.condominio.numero}}" readonly type="text" class="form-control"
-                                   id="edificio_condominio" name="numero_condominio">
+                                id="numero_condominio" name="numero_condominio">
                         </div>
                     </div>
                 </form>
@@ -104,16 +118,16 @@
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
-                        <tr class="text-center">
-                            <th scope="col">Status</th>
-                            <th scope="col">Fecha</th>
-                            <th scope="col">Tipo</th>
-                            <th scope="col">Manteniminento</th>
-                            <th scope="col">Area</th>
-                        </tr>
+                            <tr class="text-center">
+                                <th scope="col">Status</th>
+                                <th scope="col">Fecha</th>
+                                <th scope="col">Tipo</th>
+                                <th scope="col">Manteniminento</th>
+                                <th scope="col">Area</th>
+                            </tr>
                         </thead>
                         <tbody class="text-center">
-                        {{#each huesped.condominio.reportes}}
+                            {{#each huesped.condominio.reportes}}
                             <tr>
                                 <td>{{status}}</td>
                                 <td>{{fecha}}</td>
@@ -121,7 +135,7 @@
                                 <td>{{mantenimiento.nombre}}</td>
                                 <td>{{mantenimiento.area}}</td>
                             </tr>
-                        {{/each}}
+                            {{/each}}
                         </tbody>
                     </table>
                 </div>
@@ -136,17 +150,17 @@
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
-                        <tr class="text-center">
-                            <th scope="col">Fecha</th>
-                            <th scope="col">Electricidad</th>
-                            <th scope="col">Aire acondicionado</th>
-                            <th scope="col">Agua</th>
-                            <th scope="col">Otros</th>
-                            <th scope="col" class="text-success">Total</th>
-                        </tr>
+                            <tr class="text-center">
+                                <th scope="col">Fecha</th>
+                                <th scope="col">Electricidad</th>
+                                <th scope="col">Aire acondicionado</th>
+                                <th scope="col">Agua</th>
+                                <th scope="col">Otros</th>
+                                <th scope="col" class="text-success">Total</th>
+                            </tr>
                         </thead>
                         <tbody class="text-center">
-                        {{#each huesped.gastos_mensuales}}
+                            {{#each huesped.gastos_mensuales}}
                             <tr>
                                 <td>{{fecha}}</td>
                                 <td>${{electricidad}}</td>
@@ -155,14 +169,15 @@
                                 <td>
                                     ${{mantenimientos_extras}}
                                     {{#if mantenimientos_extras}}
-                                        <a href="/huesped/desc_gastos/{{../huesped.id}}/{{id}}" id="info_gastos_extras" class="material-icons btn btn-sm">
-                                            help_outline
-                                        </a>
+                                    <a href="/huesped/desc_gastos/{{../huesped.id}}/{{id}}" id="info_gastos_extras"
+                                        class="material-icons btn btn-sm">
+                                        help_outline
+                                    </a>
                                     {{/if}}
                                 </td>
                                 <td>${{total}}</td>
                             </tr>
-                        {{/each}}
+                            {{/each}}
                         </tbody>
                     </table>
                 </div>

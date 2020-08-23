@@ -23,8 +23,10 @@
                     <td>{{format_date2 fecha_ingreso}} </td>
                     <td>{{telefono}}</td>
                     <td>
+                        {{#unless username}}
                         <a data-toggle="tooltip" data-placement="top" title="Crear usuario" href="users/assignUser/{{id}}"  style="background-color: transparent" type="button" class="btn "><i
-                            class="material-icons">person_add</i></a>
+                            class="material-icons">person_add</i></a>                                                
+                        {{/unless}}
                         <a data-toggle="tooltip" data-placement="top" title="Registrar gastos mensuales" href="/huesped/gastos/{{id}}"  style="background-color: transparent" type="button" class="btn text-success"><i
                                 class="material-icons">monetization_on</i></a>
                         <a data-toggle="tooltip" data-placement="top" title="Ver información" href="/huesped/profile/{{id}}" style="background-color: transparent" type="button" class="btn text-info"><i

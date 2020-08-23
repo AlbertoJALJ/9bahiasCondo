@@ -89,7 +89,16 @@
                                 <td>{{electricidad}}</td>
                                 <td>{{aire_acondicionado}}</td>
                                 <td>{{agua}}</td>
-                                <td>{{mantenimientos_extras}}</td>
+                                <td>
+                                    ${{mantenimientos_extras}}
+                                    {{#if mantenimientos_extras}}
+                                    <a href="/huesped/desc_gastos_es/{{../huesped.id}}/{{id}}" id="info_gastos_extras"
+                                        class="material-icons btn btn-sm">
+                                        help_outline
+                                    </a>
+                                    {{/if}}
+                                </td>
+                                <td>{{total}}</td>
                             </tr>
                         {{/each}}
                         </tbody>

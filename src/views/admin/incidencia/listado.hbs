@@ -1,86 +1,181 @@
-<div class="card  ">
-    <h5 class="text-center card-header text-white" style="background-color: #1b1e21">Listado de incidencias</h5>
-    <div class="accordion" id="accordionExample">
-        {{#each incidencias}}
-            <div class="card">
-                <div class="card-header" id="heading{{inc @index}}">
-
-                    <h2 class="mb-0">
-                        <button class="btn btn-link btn-block text-dark text-center collapsed " type="button"
-                                data-toggle="collapse" data-target="#collapse{{inc @index}}" aria-expanded="true"
-                                aria-controls="collapse{{inc @index}}">
-                            <span class="{{color_status_incidencia status}}">
-                                <i class="material-icons text-left">
-                                    {{status_incidencia status}}
-                                </i>
-                                {{status}}
-                            </span>
-                            <span class="text-capitalize"> {{format_date fecha}} {{hora}} </span> En el Condominio<span
-                                class="text-capitalize text-primary"> {{condominio.numero}}
-                            del Edificio {{condominio.edificio}}</span>
-                        </button>
-                    </h2>
-                </div>
-
-                <div id="collapse{{inc @index}}" class="collapse {{collapse_status @index}}" aria-labelledby="heading{{inc @index}}"
-                     data-parent="#accordionExample">
-                    <div class="card-body col-md-10 mx-auto">
-
-                        <form>
-                            <div class="row">
-                                <div class="form-group col-12 col-lg-4 col-md-4 col-xl-4 col-sm-12">
-                                    <label for="exampleInputEmail1">Tipo</label>
-                                    <input value="{{mantenimiento.tipo}}" readonly type="text" class="form-control" id="exampleInputEmail1"
-                                           aria-describedby="input{{inc @index}}">
-                                    <small id="input{{inc @index}}" class="form-text text-muted">Descripción de ejemplo
-                                    </small>
+<h4>Incidencias</h4>
+<ul class="nav nav-tabs" id="myTab" role="tablist"> 
+    <li class="nav-item" role="presentation">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="Pendientes"
+            aria-selected="true">
+            <h4 class="d-none d-sm-none d-md-block">Pendientes</h4>
+            <p class="d-block d-sm-block d-md-none">Pendientes</p>
+        </a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="Completadas"
+            aria-selected="false">
+            <h4 class="d-none d-sm-none d-md-block">Resueltas</h4>
+            <p class="d-block d-sm-block d-md-none">Resueltas</p>
+        </a>
+    </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <div class="card mx-auto mt-2">
+            <div class="accordion" id="accordionExample">
+                {{#each incidencias}}
+                {{#unless (status_incidencia status)}}
+                <div class="card">
+                    <div class="card-header" id="heading{{inc @index}}">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link btn-block text-dark text-center collapsed " type="button"
+                                data-toggle="collapse" data-target="#collapseP{{inc @index}}" aria-expanded="true"
+                                aria-controls="collapseP{{inc @index}}">
+                                <span class="text-capitalize"> {{format_date fecha}} {{hora}} </span> En el
+                                Condominio<span class="text-capitalize text-primary"> {{condominio.numero}}
+                                    del Edificio {{condominio.edificio}}</span>
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseP{{inc @index}}" class="collapse {{collapse_status @index}}"
+                        aria-labelledby="heading{{inc @index}}" data-parent="#accordionExample">
+                        <div class="card-body col-md-10 mx-auto">
+                            <form>
+                                <div class="row">
+                                    <div class="form-group col-12 col-lg-4 col-md-4 col-xl-4 col-sm-12">
+                                        <label for="exampleInputEmail1">Tipo</label>
+                                        <input value="{{mantenimiento.tipo}}" readonly type="text" class="form-control"
+                                            id="exampleInputEmail1" aria-describedby="input{{inc @index}}">
+                                        <small id="input{{inc @index}}" class="form-text text-muted">Tipo de
+                                            mantenimiento
+                                        </small>
+                                    </div>
+                                    <div class="form-group col-12 col-lg-4 col-md-4 col-xl-4 col-sm-12">
+                                        <label for="exampleInputEmail1">Mantenimiento</label>
+                                        <input value="{{mantenimiento.nombre}}" readonly type="text"
+                                            class="form-control" id="exampleInputEmail1"
+                                            aria-describedby="input{{inc @index}}">
+                                        <small id="input{{inc @index}}" class="form-text text-muted">Nombre del
+                                            mantenimiento
+                                        </small>
+                                    </div>
+                                    <div class="form-group col-12 col-lg-4 col-md-4 col-xl-4 col-sm-12">
+                                        <label for="exampleInputEmail1">Area</label>
+                                        <input value="{{mantenimiento.area}}" readonly type="text" class="form-control"
+                                            id="exampleInputEmail1" aria-describedby="input{{inc @index}}">
+                                        <small id="input{{inc @index}}" class="form-text text-muted">Area del problema
+                                        </small>
+                                    </div>
+                                    <div class="form-group col-12 col-lg-4 col-md-4 col-xl-4 col-sm-12">
+                                        <label for="exampleInputEmail1">Huesped</label>
+                                        <input
+                                            value="{{huesped.nombres}} {{huesped.apellido_paterno}} {{huesped.apellido_materno}}"
+                                            readonly type="text" class="form-control" id="exampleInputEmail1"
+                                            aria-describedby="input{{inc @index}}">
+                                        <small id="input{{inc @index}}" class="form-text text-muted">Nombre del huesped
+                                        </small>
+                                    </div>
+                                    <div class="form-group col-12 col-lg-4 col-md-4 col-xl-4 col-sm-12">
+                                        <label for="exampleInputEmail1">Condominio</label>
+                                        <input value="{{condominio.numero}} {{condominio.edificio}}" readonly
+                                            type="text" class="form-control" id="exampleInputEmail1"
+                                            aria-describedby="input{{inc @index}}">
+                                        <small id="input{{inc @index}}" class="form-text text-muted">Numero y edificio
+                                            del condominio
+                                        </small>
+                                    </div>
+                                    <div class="form-group col-12 col-lg-4 col-md-4 col-xl-4 col-sm-12">
+                                        <label for="exampleInputEmail1">Comentarios</label>
+                                        <input value="{{comentario}}" readonly type="text" class="form-control"
+                                            id="exampleInputEmail1" aria-describedby="input{{inc @index}}">
+                                    </div>
                                 </div>
-                                <div class="form-group col-12 col-lg-4 col-md-4 col-xl-4 col-sm-12">
-                                    <label for="exampleInputEmail1">Mantenimiento</label>
-                                    <input value="{{mantenimiento.nombre}}" readonly type="text" class="form-control" id="exampleInputEmail1"
-                                           aria-describedby="input{{inc @index}}">
-                                    <small id="input{{inc @index}}" class="form-text text-muted">Descripción de ejemplo
-                                    </small>
-                                </div>
-                                <div class="form-group col-12 col-lg-4 col-md-4 col-xl-4 col-sm-12">
-                                    <label for="exampleInputEmail1">Area</label>
-                                    <input value="{{mantenimiento.area}}" readonly type="text" class="form-control" id="exampleInputEmail1"
-                                           aria-describedby="input{{inc @index}}">
-                                    <small id="input{{inc @index}}" class="form-text text-muted">Descripción de ejemplo
-                                    </small>
-                                </div>
-                                <div class="form-group col-12 col-lg-4 col-md-4 col-xl-4 col-sm-12">
-                                    <label for="exampleInputEmail1">Huesped</label>
-                                    <input value="{{huesped.nombres}} {{huesped.apellido_paterno}} {{huesped.apellido_materno}}" readonly type="text" class="form-control" id="exampleInputEmail1"
-                                           aria-describedby="input{{inc @index}}">
-                                    <small id="input{{inc @index}}" class="form-text text-muted">Descripción de ejemplo
-                                    </small>
-                                </div>
-                                <div class="form-group col-12 col-lg-4 col-md-4 col-xl-4 col-sm-12">
-                                    <label for="exampleInputEmail1">Condominio</label>
-                                    <input value="{{condominio.numero}} {{condominio.edificio}}" readonly type="text" class="form-control" id="exampleInputEmail1"
-                                           aria-describedby="input{{inc @index}}">
-                                    <small id="input{{inc @index}}" class="form-text text-muted">Descripción de ejemplo
-                                    </small>
-                                </div>
-                                <div class="form-group col-12 col-lg-4 col-md-4 col-xl-4 col-sm-12">
-                                    <label for="exampleInputEmail1">Comentarios</label>
-                                    <input value="{{comentario}}" readonly type="text" class="form-control" id="exampleInputEmail1"
-                                           aria-describedby="input{{inc @index}}">
-                                    <small id="input{{inc @index}}" class="form-text text-muted">Descripción de ejemplo
-                                    </small>
-                                </div>
-                            </div>
-                            {{#if (status_incidencia_button status)}}
                                 <div class="d-flex justify-content-center">
-                                    <a href="/condominio/incidencia/resuelta/{{id}}" class="btn btn-primary btn-lg  ">Incidencia resuelta</a>
+                                    <a href="/condominio/incidencia/resuelta/{{id}}"
+                                        class="btn btn-primary btn-lg  ">Incidencia resuelta</a>
                                 </div>
-                            {{/if}}
-                        </form>
-
+                            </form>
+                        </div>
                     </div>
                 </div>
+                {{/unless}}
+                {{/each}}
             </div>
-        {{/each}}
+        </div>
+    </div>
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="card mx-auto mt-2">
+            <div class="accordion" id="accordionExample2">
+                {{#each incidencias}}
+                {{#if (status_incidencia status)}}
+                <div class="card">
+                    <div class="card-header" id="heading{{inc @index}}">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link btn-block text-dark text-center collapsed " type="button"
+                                data-toggle="collapse" data-target="#collapseDDD{{inc @index}}" aria-expanded="true"
+                                aria-controls="collapseDDD{{inc @index}}">
+                                <span class="text-capitalize"> {{format_date fecha}} {{hora}} </span> En el
+                                Condominio<span class="text-capitalize text-primary"> {{condominio.numero}}
+                                    del Edificio {{condominio.edificio}}</span>
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseDDD{{inc @index}}" class="collapse {{collapse_status @index}}"
+                        aria-labelledby="heading{{inc @index}}" data-parent="#accordionExample2">
+                        <div class="card-body col-md-10 mx-auto">
+                            <div class="row">
+                                    <div class="form-group col-12 col-lg-4 col-md-4 col-xl-4 col-sm-12">
+                                        <label for="exampleInputEmail1">Tipo</label>
+                                        <input value="{{mantenimiento.tipo}}" readonly type="text" class="form-control"
+                                            id="exampleInputEmail1" aria-describedby="input{{inc @index}}">
+                                        <small id="input{{inc @index}}" class="form-text text-muted">Tipo de
+                                            mantenimiento
+                                        </small>
+                                    </div>
+                                    <div class="form-group col-12 col-lg-4 col-md-4 col-xl-4 col-sm-12">
+                                        <label for="exampleInputEmail1">Mantenimiento</label>
+                                        <input value="{{mantenimiento.nombre}}" readonly type="text"
+                                            class="form-control" id="exampleInputEmail1"
+                                            aria-describedby="input{{inc @index}}">
+                                        <small id="input{{inc @index}}" class="form-text text-muted">Nombre del
+                                            mantenimiento
+                                        </small>
+                                    </div>
+                                    <div class="form-group col-12 col-lg-4 col-md-4 col-xl-4 col-sm-12">
+                                        <label for="exampleInputEmail1">Area</label>
+                                        <input value="{{mantenimiento.area}}" readonly type="text" class="form-control"
+                                            id="exampleInputEmail1" aria-describedby="input{{inc @index}}">
+                                        <small id="input{{inc @index}}" class="form-text text-muted">Area del problema
+                                        </small>
+                                    </div>
+                                    <div class="form-group col-12 col-lg-4 col-md-4 col-xl-4 col-sm-12">
+                                        <label for="exampleInputEmail1">Huesped</label>
+                                        <input
+                                            value="{{huesped.nombres}} {{huesped.apellido_paterno}} {{huesped.apellido_materno}}"
+                                            readonly type="text" class="form-control" id="exampleInputEmail1"
+                                            aria-describedby="input{{inc @index}}">
+                                        <small id="input{{inc @index}}" class="form-text text-muted">Nombre del huesped
+                                        </small>
+                                    </div>
+                                    <div class="form-group col-12 col-lg-4 col-md-4 col-xl-4 col-sm-12">
+                                        <label for="exampleInputEmail1">Condominio</label>
+                                        <input value="{{condominio.numero}} {{condominio.edificio}}" readonly
+                                            type="text" class="form-control" id="exampleInputEmail1"
+                                            aria-describedby="input{{inc @index}}">
+                                        <small id="input{{inc @index}}" class="form-text text-muted">Numero y edificio
+                                            del condominio
+                                        </small>
+                                    </div>
+                                    <div class="form-group col-12 col-lg-4 col-md-4 col-xl-4 col-sm-12">
+                                        <label for="exampleInputEmail1">Comentarios</label>
+                                        <input value="{{comentario}}" readonly type="text" class="form-control"
+                                            id="exampleInputEmail1" aria-describedby="input{{inc @index}}">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {{/if}}
+                {{/each}}
+            </div>
+        </div>
     </div>
 </div>
+    

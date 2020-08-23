@@ -16,9 +16,9 @@ handlebars.registerHelper('format_date2', function (currentValue) {
 
 handlebars.registerHelper('status_incidencia', function(currentValue) {
   if (currentValue === 'Pendiente'){
-    return currentValue = 'construction'
+    return currentValue = false
   } else if (currentValue === 'Resuelto') {
-    return currentValue = 'done_all'
+    return currentValue = true
   }
 });
 handlebars.registerHelper('color_status_incidencia', function (currentValue) {

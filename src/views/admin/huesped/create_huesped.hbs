@@ -3,7 +3,7 @@
     <div class="card-body">
         <p class="card-title">Por favor, rellena los campos siguientes:</p>
         <form method="post" action="/huesped/create/">
-            <div class="row">
+            <div class="row align-items-center">
                 <div class="form-group col-sm-12 col-md-4 col-xl-4 col-lg-4">
                     <label for="nombres_huesped">Nombres</label>
                     <input required type="text" class="form-control" name="nombres" id="nombres_huesped">
@@ -29,9 +29,15 @@
                     <select required name="nacionalidad" class="form-control" id="nacionalidad">
                     </select>
                 </div>
-                <div class="form-group form-check mx-auto">
-                    <input type="checkbox" name="expeclinico" class="form-check-input" id="expediente_clinico" {{{checked expeclinico}}}>
-                    <label class="form-check-label" for="expediente_clinico">¿Cuenta con expediente clínico?</label>
+                <div class="form-group col-sm-12 col-md-4 col-xl-4 col-lg-4 ">
+                    <label for="apellido_materno">Correo</label>
+                    <input type="email" class="form-control" id="mail" name="mail">
+                </div>
+                <div class="form-group col-sm-12 col-md-4 col-xl-4 col-lg-4 mt-md-4 mt-sm-0">
+                    <input type="checkbox" name="expeclinico" class="form-check-input" id="expediente_clinico"
+                        {{{checked expeclinico}}}>
+                    <label class="form-check-label" for="expediente_clinico">¿Cuenta con expediente
+                        clínico?</label>
                 </div>
             </div>
             <hr>
@@ -39,7 +45,8 @@
             <div class="row">
                 <div class="form-group col-sm-12 col-md-6 col-xl-6 col-lg-6">
                     <label for="edificio_condominio">Edificio</label>
-                    <select required onchange="getCondominio()" name="edificio" class="form-control" id="edificio_condominio">
+                    <select required onchange="getCondominio()" name="edificio" class="form-control"
+                        id="edificio_condominio">
                         <option disabled selected>Selecciona edificio</option>
                         {{>edificios}}
                     </select>
@@ -55,5 +62,3 @@
         </form>
     </div>
 </div>
-
-

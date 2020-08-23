@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
 import {isAdmin, isUser} from '../libs/auth'
-import translate from 'translate'
 import {
+  /* render_update_password_es,
+  update_password_es, */
   render_create_huesped,
   getCondo,
   create_huesped,
@@ -19,6 +20,8 @@ import {
   render_profile,
   miPerfil,
   desc_gastos,
+  desc_gastos_es,
+  desc_gastos_en,
   miPerfilEn
 } from '../controllers/huesped'
 
@@ -38,13 +41,15 @@ import {
   delete_condominio,
   liberar_condominio,
   historial_condominios,
-  getTipoIncidenciaEn
+  getTipoIncidenciaEn,
+  mailsend
 } from '../controllers/condominio'
 router.get('/getCondos/:edificio', getCondo)
 router.get('/getTipoIncidencia/', getTipoIncidencia)
 router.get('/getTipoIncidencia/en', getTipoIncidenciaEn)
 
 router.get('/',isAdmin, async function(req, res) {
+  console.log(req.session);
   res.render('index');
 })
 router.get('/huesped/create/', isAdmin, render_create_huesped)
@@ -61,6 +66,8 @@ router.get('/huesped/edit/:id', isAdmin, render_edit)
 router.post('/huesped/edit/:id', isAdmin, edit)
 router.get('/huesped/profile/:id', isAdmin, render_profile)
 router.get('/huesped/desc_gastos/:huespedID/:gastoID', isAdmin, desc_gastos)
+router.get('/huesped/desc_gastos_es/:huespedID/:gastoID', isUser, desc_gastos_es)
+router.get('/huesped/desc_gastos_en/:huespedID/:gastoID', isUser, desc_gastos_en)
 
 router.get('/condominio/create', isAdmin, render_create_condominio)
 router.post('/condominio/create', isAdmin, create_condominio)
@@ -80,6 +87,10 @@ router.post('/condominio/incidencia/en/create/:userID/:condoID', isUser, create_
 
 router.get('/huesped/miperfil/es/:id', isUser, miPerfil)
 router.get('/huesped/miperfil/en/:id', isUser, miPerfilEn)
+/* router.get('/huesped/update/password', isUser, render_update_password_es)
+router.post('/huesped/update/password', isUser, update_password_es) */
+
 
 router.post('/mantenimiento/create/', isAdmin, create_mantenimiento )
+
 module.exports = router;
