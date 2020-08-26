@@ -157,7 +157,8 @@ index.incidencia_resuelta = async (req, res) => {
 }
 index.condominios = async (req, res) => {
   const condominios = await Condominio.find({}).populate({ path: 'huesped_actual', model: Huesped })
-  res.render('admin/condominio/list', { condominios })
+  console.log(condominios)
+  res.render('admin/condominio/list', { condominios, mensaje: req.flash('mensaje') })
 }
 index.delete_condominio = async (req, res) => {
   await Huesped.findOne({ condominio: req.params.id }, (err, huesped) => {

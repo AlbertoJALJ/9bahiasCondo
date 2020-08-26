@@ -22,7 +22,9 @@ import {
   desc_gastos,
   desc_gastos_es,
   desc_gastos_en,
-  miPerfilEn
+  miPerfilEn,
+  render_update_condominio_huesped,
+  update_condominio_huesped
 } from '../controllers/huesped'
 
 import {
@@ -68,6 +70,8 @@ router.get('/huesped/profile/:id', isAdmin, render_profile)
 router.get('/huesped/desc_gastos/:huespedID/:gastoID', isAdmin, desc_gastos)
 router.get('/huesped/desc_gastos_es/:huespedID/:gastoID', isUser, desc_gastos_es)
 router.get('/huesped/desc_gastos_en/:huespedID/:gastoID', isUser, desc_gastos_en)
+router.get('/huesped/condominio/:id', render_update_condominio_huesped)
+router.post('/huesped/condominio/:id', update_condominio_huesped)
 
 router.get('/condominio/create', isAdmin, render_create_condominio)
 router.post('/condominio/create', isAdmin, create_condominio)
@@ -92,5 +96,6 @@ router.post('/huesped/update/password', isUser, update_password_es) */
 
 
 router.post('/mantenimiento/create/', isAdmin, create_mantenimiento )
+
 
 module.exports = router;

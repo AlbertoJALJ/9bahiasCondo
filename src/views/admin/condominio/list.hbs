@@ -1,5 +1,15 @@
 <div class="card col-lg-12 col-md-12 col-xl-12 col-sm-12 mx-auto shadow-lg p-3 mb-5 bg-white rounded d-none d-sm-none d-md-block">
     <h5 class="text-center card-header"> Listado de condominios</h5>
+    {{#if mensaje}}
+        <div class="col-8 mt-3 mx-auto">
+        <div class="alert alert-success alert-dismissible text-center fade show" role="alert">
+            {{mensaje}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+    {{/if}}
     <div class="card-body">
         <div class="table-responsive">
             <table class="table">
@@ -23,15 +33,15 @@
                     <td>
                         <a data-toggle="tooltip" data-placement="top" title="Eliminar condominio" href="/condominio/delete/{{id}}" style="background-color: transparent" type="button" class="btn text-danger"><i
                                 class="material-icons">delete</i></a>
-                        {{#unless huesped_actual.nombres}}
-                            <a data-toggle="tooltip" data-placement="top" title=" Condominio desocupado" disabled="" style="background-color: transparent" type="button" class="btn text-dark"><i
-                                    class="material-icons">person_add_disabled</i></a>
-                        {{else}}
-                            <a data-toggle="tooltip" data-placement="top" title=" Ver Huesped " href="/huesped/profile/{{huesped_actual.id}}" style="background-color: transparent" type="button" class="btn text-dark"><i
+                        {{#if huesped_actual.nombres}}
+                        <a data-toggle="tooltip" data-placement="top" title=" Ver Huesped " href="/huesped/profile/{{huesped_actual.id}}" style="background-color: transparent" type="button" class="btn text-dark"><i
                                     class="material-icons">person_pin</i></a>
                             <a data-toggle="tooltip" data-placement="top" title=" Liberar condominio " href="/condominio/free/{{id}}" style="background-color: transparent" type="button" class="btn text-dark"><i
                                     class="material-icons">person_remove</i></a>
-                        {{/unless}}
+                                    
+
+                        {{/if}}
+                        
                     </td>
                 </tr>
                 </tbody>
@@ -44,6 +54,9 @@
 
 <div class="table-responsive d-block d-sm-block d-md-none">
     <h3 class="text-center">Condominios</h3>
+    {{#if mensaje}}
+        {{mensaje}}
+    {{/if}}
     <table class="table">
         <thead class="thead-dark">
         <tr>

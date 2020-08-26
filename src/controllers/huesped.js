@@ -37,7 +37,12 @@ index.delete_huesped = async (req, res) => {
     Condominio.findByIdAndUpdate(huesped.condominio, { status: 'Disponible', huesped_actual: null }, (err) => {
       (err) ? console.log(err) : ''
     })
-    res.sendStatus(200)
+    if (err) {
+      req.flash('mensaje', `${err.message}`)
+      res.redirect('/huespedes')
+    }
+    req.flash('mensaje', `Eliminado correctamente`)
+    res.redirect('/huespedes')
   })
 }
 index.create_huesped = async (req, res) => {
@@ -204,7 +209,8 @@ index.gastos_mensuales = async (req, res) => {
 }
 index.huespedes = async (req, res) => {
   const huespedes = await Huesped.find({}).populate({ path: 'condominio', model: Condominio })
-  res.render('admin/huesped/list', { huespedes })
+  console.log(huespedes)
+  res.render('admin/huesped/list', { huespedes, mensaje: req.flash('mensaje') })
 }
 index.render_cuenta = async (req, res) => {
   const huesped = await Huesped.findById(req.params.id)
@@ -281,6 +287,27 @@ index.desc_gastos_en = async (req, res) => {
 }
 index.render_update_password_es = async (req, res) => {
   res.render('user/resetPassword_es', { layout: false })
+}
+index.render_update_condominio_huesped = async (req, res) => {
+  res.render('admin/huesped/update_condo', { huesped: req.params.id })
+}
+index.update_condominio_huesped = async (req, res) => {
+  const huesped = await Huesped.findById(req.params.id)
+  console.log(huesped)
+  const condo = await Condominio.findById(req.body.condominio)
+try {
+  condo.huesped_actual = req.params.id
+  condo.status = "Ocupado"
+  condo.historial_ocupantes.push(req.params.id)
+  huesped.condominio = req.body.condominio
+  condo.save()
+  huesped.save()
+  req.flash('mensaje', `Condominio actualizado correctamente`)
+  res.redirect('/huespedes')
+} catch (error) {
+  req.flash('mensaje', `${error.message}`)
+  res.redirect('/huespedes')
+} 
 }
 /* index.update_password_es = async (req, res, next) => {
   try {
